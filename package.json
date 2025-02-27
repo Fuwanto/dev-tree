@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/Fuwanto/dev-tree#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.11.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
