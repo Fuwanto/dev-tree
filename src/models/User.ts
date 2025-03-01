@@ -1,12 +1,20 @@
 import mongoose, { Schema, trusted } from "mongoose"
 
 export interface IUser {
-  name: String
-  email: String
-  password: String
+  handle: string
+  name: string
+  email: string
+  password: string
 }
 
 const UserSchema = new Schema({
+  handle: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -16,6 +24,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+    lowercase: true,
     unique: true,
   },
   password: {

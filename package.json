@@ -23,13 +23,16 @@
   },
   "homepage": "https://github.com/Fuwanto/dev-tree#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.11.0"
+    "express-validator": "^7.2.1",
+    "mongoose": "^8.11.0",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0",
+    "@types/express": "^4.17.20",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
