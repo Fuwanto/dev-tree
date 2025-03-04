@@ -23,7 +23,7 @@ export default function LoginView() {
     try {
       const { data } = await api.post("/auth/login", formData)
       // Para este proyecto, por simplicidad, lo estoy almacenando en Local Storage en lugar de Cookies
-      localStorage.setItem("token", data.token)
+      localStorage.setItem("AUTH_TOKEN", data)
       toast.success("Inicio de sesión exitoso")
       reset()
     } catch (error) {
@@ -39,7 +39,7 @@ export default function LoginView() {
 
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="bg-white px-5 py-20 rounded-lg space-y-10 mt-10"
+        className="bg-white px-5 py-20 rounded-lg space-y-10 mt-1"
         noValidate
       >
         <div className="grid grid-cols-1 space-y-3">

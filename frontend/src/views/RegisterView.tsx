@@ -43,7 +43,7 @@ export default function RegisterView() {
 
       <form
         onSubmit={handleSubmit(handleRegister)}
-        className="bg-white px-5 py-20 rounded-lg space-y-10 mt-10 text-black"
+        className="bg-white px-5 py-20 rounded-lg space-y-10 mt-10"
       >
         <div className="grid grid-cols-1 space-y-3">
           <label htmlFor="name" className="text-2xl text-slate-500">
