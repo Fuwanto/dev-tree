@@ -1,8 +1,11 @@
 import type { Request, Response } from "express"
 import slugify from "slugify"
+import formidable from "formidable"
+import { v4 as uuid } from "uuid"
 import { checkPassword, hashPassword } from "../utils/auth"
 import User from "../models/User"
 import { generateJWT } from "../utils/jwt"
+import cloudinary from "../config/cloudinary"
 
 export const createUser = async (req: Request, res: Response) => {
   const { email, password } = req.body
@@ -71,6 +74,32 @@ export const updateProfile = async (req: Request, res: Response) => {
     req.user.handle = handle
     await req.user.save()
     return res.send("Perfil actualizado correctamente")
+  } catch (e) {
+    const error = new Error("Hubo un error")
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+export const uploadImage = async (req: Request, res: Response) => {
+  const form = formidable({ multiples: false })
+  try {
+    form.parse(req, (error, fields, files) => {
+      cloudinary.uploader.upload(
+        files.file[0].filepath,
+        { public_id: uuid() },
+        async function (error, result) {
+          if (error) {
+            const error = new Error("Hubo un error al subir la imagen")
+            return res.status(500).json({ error: error.message })
+          }
+          if (result) {
+            req.user.image = result.secure_url
+            await req.user.save()
+            return res.json({ image: result.secure_url })
+          }
+        }
+      )
+    })
   } catch (e) {
     const error = new Error("Hubo un error")
     return res.status(500).json({ error: error.message })
