@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { toast } from "sonner"
+import { techToast } from "../utils/toastStyles"
 import { social } from "../data/social"
 import DevTreeInput from "../components/DevTreeInput"
 import { isValidUrl } from "../utils"
@@ -16,10 +16,10 @@ export default function LinkTreeView() {
   const { mutate } = useMutation({
     mutationFn: updateProfile,
     onError: (error) => {
-      toast.error(error.message)
+      techToast.error(error.message)
     },
     onSuccess: () => {
-      toast.success("Actualizado correctamente")
+      techToast.success("Actualizado correctamente")
     },
   })
 
@@ -51,7 +51,7 @@ export default function LinkTreeView() {
         if (isValidUrl(link.url)) {
           return { ...link, enabled: !link.enabled }
         } else {
-          toast.error("URL no válida")
+          techToast.error("URL no válida")
           return link
         }
       } else {
@@ -123,7 +123,7 @@ export default function LinkTreeView() {
 
   return (
     <>
-      <div className="space-y-5">
+      <div className="space-y-6 bg-white/10 rounded-xl p-8 shadow-xl">
         {devTreeLinks.map((item) => (
           <DevTreeInput
             key={item.name}
@@ -133,10 +133,27 @@ export default function LinkTreeView() {
           />
         ))}
         <button
-          className="bg-cyan-400 p-2 text-lg w-full uppercase text-slate-400 rounded-lg font-bold"
+          className="w-full bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 
+                 text-white font-bold py-4 px-6 rounded-xl uppercase tracking-wide 
+                 transition-all duration-200 hover:shadow-lg hover:shadow-cyan-200/40
+                 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
           onClick={() => mutate(queryClient.getQueryData(["user"])!)}
         >
-          Guardar Cambios
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 group-hover:translate-x-1 transition-transform"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+            />
+          </svg>
+          GUARDAR CAMBIOS
         </button>
       </div>
     </>

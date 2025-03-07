@@ -53,59 +53,88 @@ export default function DevTree({ data }: DevTreeProps) {
 
   return (
     <>
-      <header className="bg-slate-800 py-5">
-        <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center md:justify-between">
-          <div className="w-full p-5 lg:p-0 md:w-1/3">
-            <img src="/logo.svg" className="w-full block" />
+      <header className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-cyan-400/20 py-6 shadow-xl">
+        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center md:justify-between px-6">
+          <div className="w-full md:w-auto group transition-all duration-300">
+            <img
+              src="/logo.svg"
+              className="w-48 hover:drop-shadow-glow transition-all hover:scale-105 hover:rotate-[5deg]"
+              alt="Dev-tree Logo"
+            />
           </div>
-          <div className="md:w-1/3 md:flex md:justify-end">
+          <div className="mt-4 md:mt-0">
             <button
-              className=" bg-lime-500 p-2 text-slate-800 uppercase font-black text-xs rounded-lg cursor-pointer"
+              className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500
+                        text-white px-6 py-3 uppercase font-bold text-sm rounded-xl cursor-pointer
+                        transition-all duration-200 hover:shadow-lg hover:shadow-rose-400/30
+                        flex items-center gap-2 group"
               onClick={() => {}}
             >
+              <svg
+                className="w-5 h-5 group-hover:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
               Cerrar Sesión
             </button>
           </div>
         </div>
       </header>
-      <div className="bg-gray-100  min-h-screen py-10">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12">
         <NavigationTabs />
-        <main className="mx-auto max-w-5xl p-10 md:p-0">
-          <div className="flex justify-end">
+        <main className="mx-auto max-w-7xl px-6">
+          <div className="flex justify-end mb-8">
             <Link
-              className="font-bold text-right text-slate-800 text-2xl"
+              className="font-bold text-right bg-gradient-to-r from-cyan-400 to-indigo-400 hover:from-cyan-300 hover:to-indigo-300 
+                        bg-clip-text text-transparent text-2xl underline-offset-4 hover:underline transition-all"
               to={""}
               target="_blank"
               rel="noreferrer noopener"
             >
-              Visitar Mi Perfil en /{data.handle}
+              🌐 Visitar Mi Perfil /{data.handle}
             </Link>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-10 mt-10">
-            <div className="flex-1 ">
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex-1  bg-gray-800/30 rounded-3xl p-8 border border-cyan-400/20 shadow-2xl">
               <Outlet />
             </div>
-            <div className="w-full md:w-96 bg-slate-800 px-5 py-10 space-y-6">
-              <p className="text-4xl text-center text-white">{data.handle}</p>
+
+            <div className="w-full lg:w-96 bg-gradient-to-b from-gray-800/60 to-gray-900/80  px-8 py-12 rounded-3xl space-y-8 border border-cyan-400/20 shadow-2xl">
+              <div className="text-center">
+                <p className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                  @{data.handle}
+                </p>
+              </div>
 
               {data.image && (
-                <img
-                  src={data.image}
-                  alt="Imagen Perfil"
-                  className="mx-auto max-w[250px]"
-                />
+                <div className="group relative overflow-hidden rounded-2xl transition-all hover:scale-[1.02]">
+                  <img
+                    src={data.image}
+                    alt="Imagen Perfil"
+                    className="mx-auto w-full max-w-[250px] border-4 border-cyan-400/20 rounded-xl transform transition-all group-hover:border-cyan-400/40"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
+                </div>
               )}
 
-              <p className="text-center text-lg font-black text-white">
-                {data.description}
+              <p className="text-center text-lg font-medium text-gray-300 italic">
+                "{data.description}"
               </p>
 
               <DndContext
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
               >
-                <div className="mt-20 flex flex-col gap-5 ">
+                <div className="mt-12 space-y-6">
                   <SortableContext
                     items={enabledLinks}
                     strategy={verticalListSortingStrategy}
@@ -120,6 +149,7 @@ export default function DevTree({ data }: DevTreeProps) {
           </div>
         </main>
       </div>
+
       <Toaster position="top-right" />
     </>
   )
