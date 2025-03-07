@@ -41,14 +41,9 @@ export default function LinkTreeView() {
       link.name === e.target.name ? { ...link, url: e.target.value } : link
     )
     setDevTreeLinks(updateLinks)
-
-    queryClient.setQueryData(["user"], (prevData: User) => {
-      return {
-        ...prevData,
-        links: JSON.stringify(updateLinks),
-      }
-    })
   }
+
+  const links: SocialNetwork[] = JSON.parse(user.links)
 
   const handleEnabledLink = (socialNetWork: string) => {
     const updateLinks = devTreeLinks.map((link) => {
@@ -65,10 +60,63 @@ export default function LinkTreeView() {
     })
     setDevTreeLinks(updateLinks)
 
+    let updatedItems: SocialNetwork[] = []
+
+    const selectedSocialNetwork = updateLinks.find(
+      (link) => link.name === socialNetWork
+    )
+    if (selectedSocialNetwork?.enabled) {
+      const id = links.filter((link) => link.id).length + 1
+      if (links.some((link) => link.name === socialNetWork)) {
+        updatedItems = links.map((link) => {
+          if (link.name === socialNetWork) {
+            return {
+              ...link,
+              enabled: true,
+              id,
+            }
+          } else {
+            return link
+          }
+        })
+      } else {
+        const newItem = {
+          ...selectedSocialNetwork,
+          id,
+        }
+        updatedItems = [...links, newItem]
+      }
+    } else {
+      const indexToUpdate = links.findIndex(
+        (link) => link.name === socialNetWork
+      )
+      updatedItems = links.map((link) => {
+        if (link.name === socialNetWork) {
+          return {
+            ...link,
+            id: 0,
+            enabled: false,
+          }
+        } else if (
+          indexToUpdate !== 0 &&
+          link.id === 1 &&
+          link.id > indexToUpdate
+        ) {
+          return {
+            ...link,
+            id: link.id - 1,
+          }
+        } else {
+          return link
+        }
+      })
+    }
+
+    // almacenar en la bd
     queryClient.setQueryData(["user"], (prevData: User) => {
       return {
         ...prevData,
-        links: JSON.stringify(updateLinks),
+        links: JSON.stringify(updatedItems),
       }
     })
   }
@@ -86,7 +134,7 @@ export default function LinkTreeView() {
         ))}
         <button
           className="bg-cyan-400 p-2 text-lg w-full uppercase text-slate-400 rounded-lg font-bold"
-          onClick={() => mutate(user)}
+          onClick={() => mutate(queryClient.getQueryData(["user"])!)}
         >
           Guardar Cambios
         </button>
