@@ -55,13 +55,23 @@ export default function DevTree({ data }: DevTreeProps) {
     <>
       <header className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-cyan-400/20 py-6 shadow-xl">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center md:justify-between px-6">
-          <div className="w-full md:w-auto group transition-all duration-300">
+          <Link
+            to="/"
+            className="flex items-center gap-4 group transition-all duration-300"
+            title="Volver al inicio"
+          >
             <img
               src="/logo.svg"
-              className="w-48 hover:drop-shadow-glow transition-all hover:scale-105 hover:rotate-[5deg]"
+              className="w-16 hover:drop-shadow-glow transition-all hover:scale-105 hover:rotate-[5deg]"
               alt="Dev-tree Logo"
             />
-          </div>
+            <div className="text-left">
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                DevTree
+              </span>
+              <div className="h-[2px] mt-1 bg-gradient-to-r from-cyan-400/0 via-cyan-400 to-indigo-400/0 w-full" />
+            </div>
+          </Link>
           <div className="mt-4 md:mt-0">
             <button
               className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500
@@ -95,7 +105,7 @@ export default function DevTree({ data }: DevTreeProps) {
             <Link
               className="font-bold text-right bg-gradient-to-r from-cyan-400 to-indigo-400 hover:from-cyan-300 hover:to-indigo-300 
                         bg-clip-text text-transparent text-2xl underline-offset-4 hover:underline transition-all"
-              to={""}
+              to={`/${data.handle}`}
               target="_blank"
               rel="noreferrer noopener"
             >

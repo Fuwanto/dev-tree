@@ -1,4 +1,4 @@
-import { Outlet } from "react-router"
+import { Outlet, Link } from "react-router"
 import { Toaster } from "sonner"
 
 export default function AuthLayout() {
@@ -11,14 +11,24 @@ export default function AuthLayout() {
         </div>
 
         <div className="relative max-w-md mx-auto pt-12 px-4 sm:px-0">
-          {/* Logo con efectos interactivos */}
-          <div className="flex justify-center mb-16 group">
+          {/* Logo con texto y efectos interactivos */}
+          <Link
+            to="/"
+            className="flex flex-col md:flex-row items-center justify-center gap-4 mb-16 group"
+            title="Volver al inicio"
+          >
             <img
               src="/logo.svg"
               alt="Logotipo Dev-tree"
               className="h-24 w-24 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[360deg] hover:drop-shadow-glow"
             />
-          </div>
+            <div className="text-center md:text-left">
+              <span className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                DevTree
+              </span>
+              <div className="h-[2px] mt-2 bg-gradient-to-r from-cyan-400/0 via-cyan-400 to-indigo-400/0 w-full" />
+            </div>
+          </Link>
 
           {/* Contenedor del formulario */}
           <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/80 border border-cyan-400/20 rounded-3xl p-8 shadow-2xl hover:shadow-cyan-400/10 transition-all duration-300">
