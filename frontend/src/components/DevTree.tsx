@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router"
+import { useEffect, useState } from "react"
 import { Toaster } from "sonner"
+import { useQueryClient } from "@tanstack/react-query"
 import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core"
 import {
   SortableContext,
@@ -7,10 +9,9 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable"
 import NavigationTabs from "../components/NavigationTabs"
+import Header from "./Header"
 import { SocialNetwork, User } from "../types"
-import { useEffect, useState } from "react"
 import DevTreeLink from "./DevTreeLink"
-import { useQueryClient } from "@tanstack/react-query"
 
 type DevTreeProps = {
   data: User
@@ -53,52 +54,8 @@ export default function DevTree({ data }: DevTreeProps) {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-cyan-400/20 py-6 shadow-xl">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center md:justify-between px-6">
-          <Link
-            to="/"
-            className="flex items-center gap-4 group transition-all duration-300"
-            title="Volver al inicio"
-          >
-            <img
-              src="/logo.svg"
-              className="w-16 hover:drop-shadow-glow transition-all hover:scale-105 hover:rotate-[5deg]"
-              alt="Dev-tree Logo"
-            />
-            <div className="text-left">
-              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-                DevTree
-              </span>
-              <div className="h-[2px] mt-1 bg-gradient-to-r from-cyan-400/0 via-cyan-400 to-indigo-400/0 w-full" />
-            </div>
-          </Link>
-          <div className="mt-4 md:mt-0">
-            <button
-              className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500
-                        text-white px-6 py-3 uppercase font-bold text-sm rounded-xl cursor-pointer
-                        transition-all duration-200 hover:shadow-lg hover:shadow-rose-400/30
-                        flex items-center gap-2 group"
-              onClick={() => {}}
-            >
-              <svg
-                className="w-5 h-5 group-hover:rotate-180 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-              Cerrar Sesión
-            </button>
-          </div>
-        </div>
-      </header>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+        <Header />
         <NavigationTabs />
         <main className="mx-auto max-w-7xl px-6">
           <div className="flex justify-end mb-8">

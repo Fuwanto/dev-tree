@@ -46,13 +46,13 @@ export default function HandleData({ data }: HandleDataProps) {
               target="_blank"
               rel="noreferrer noopenner"
               className="group bg-gray-800/50 border-2 border-cyan-400/20 rounded-xl p-4 md:p-6
-                         hover:border-cyan-400/40 hover:shadow-glow transition-all duration-200 cursor-pointer
+                         hover:border-cyan-400/40 transition-all duration-200 cursor-pointer
                          flex items-center gap-4 md:gap-6 hover:-translate-y-1"
             >
               {/* Icono con efecto neón */}
               <div
                 className="w-12 h-12 md:w-14 md:h-14 bg-cover border-2 border-cyan-400/20 rounded-full p-2
-                               transition-all group-hover:border-cyan-400/40 group-hover:shadow-glow"
+                               transition-all group-hover:border-cyan-400/40 "
                 style={{
                   backgroundImage: `url("/social/icon_${link.name}.svg")`,
                 }}

@@ -30,7 +30,7 @@ export default function DevTreeLink({ link }: DevTreeLinkProps) {
       {/* Icono con efecto neón */}
       <div
         className="w-14 h-14 bg-cover bg-no-repeat border-2 border-cyan-400/20 rounded-full p-2 transition-all
-                 group-hover:border-cyan-400/40 group-hover:shadow-glow"
+                 group-hover:border-cyan-400/40 "
         style={{ backgroundImage: `url("/social/icon_${link.name}.svg")` }}
       ></div>
 

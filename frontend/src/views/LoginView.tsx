@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useForm } from "react-hook-form"
 import { isAxiosError } from "axios"
 import { techToast } from "../utils/toastStyles"
@@ -7,6 +7,8 @@ import api from "../config/axios"
 import ErrorMessage from "../components/ErrorMessage"
 
 export default function LoginView() {
+  const navigate = useNavigate()
+
   const initialValues: LoginForm = {
     email: "",
     password: "",
@@ -15,7 +17,6 @@ export default function LoginView() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ defaultValues: initialValues })
 
@@ -25,7 +26,7 @@ export default function LoginView() {
       // Para este proyecto, por simplicidad, lo estoy almacenando en Local Storage en lugar de Cookies
       localStorage.setItem("AUTH_TOKEN", data)
       techToast.success("Inicio de sesión exitoso")
-      reset()
+      navigate("/admin")
     } catch (error) {
       if (isAxiosError(error) && error.response) {
         techToast.error(error.response.data.error)

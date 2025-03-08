@@ -60,7 +60,7 @@ export default function NavigationTabs() {
                   <tab.icon
                     className={classNames(
                       location.pathname === tab.href
-                        ? "text-cyan-400 drop-shadow-glow"
+                        ? "text-cyan-400 "
                         : "text-gray-400 group-hover:text-cyan-300",
                       "w-6 h-6 transition-all",
                       location.pathname === tab.href ? "animate-pulse" : ""

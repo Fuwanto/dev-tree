@@ -8,7 +8,7 @@ export async function getUser() {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message)
+      throw new Error(error.response.data.error)
     }
   }
 }
@@ -19,7 +19,7 @@ export async function getUserByHandle(handle: string) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message)
+      throw new Error(error.response.data.error)
     }
   }
 }
@@ -30,7 +30,7 @@ export async function updateProfile(formData: User) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message)
+      throw new Error(error.response.data.error)
     }
   }
 }
@@ -43,7 +43,18 @@ export async function uploadImage(file: File) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message)
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+
+export async function searchByHandle(handle: string) {
+  try {
+    const { data } = await api.post<string>("/search", { handle })
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
     }
   }
 }

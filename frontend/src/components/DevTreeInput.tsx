@@ -19,7 +19,7 @@ export default function DevTreeInput({
         {/* Icon Container - Responsive */}
         <div
           className="w-10 h-10 md:w-14 md:h-14 bg-cover bg-no-repeat border-2 border-cyan-400/20 rounded-full 
-                   p-1.5 md:p-2 transition-all group-hover:border-cyan-400/40 group-hover:shadow-glow"
+                   p-1.5 md:p-2 transition-all group-hover:border-cyan-400/40 "
           style={{ backgroundImage: `url("/social/icon_${item.name}.svg")` }}
         ></div>
 
@@ -43,7 +43,7 @@ export default function DevTreeInput({
             item.enabled ? "bg-cyan-400" : "bg-gray-600",
             "relative inline-flex h-6 w-12 md:h-7 md:w-14 flex-shrink-0 cursor-pointer rounded-full border-2",
             "border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
-            "focus:ring-2 focus:ring-cyan-400/30 hover:shadow-glow"
+            "focus:ring-2 focus:ring-cyan-400/30"
           )}
         >
           <span
