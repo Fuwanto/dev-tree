@@ -61,12 +61,13 @@ export default function DevTree({ data }: DevTreeProps) {
           <div className="flex justify-end mb-8">
             <Link
               className="font-bold text-right bg-gradient-to-r from-cyan-400 to-indigo-400 hover:from-cyan-300 hover:to-indigo-300 
-                        bg-clip-text text-transparent text-2xl underline-offset-4 hover:underline transition-all"
+                  bg-clip-text text-transparent text-2xl underline-offset-4 hover:underline transition-all
+                  px-4 py-2 rounded-lg border border-cyan-400/20 shadow-lg hover:shadow-xl"
               to={`/${data.handle}`}
               target="_blank"
               rel="noreferrer noopener"
             >
-              🌐 Visitar Mi Perfil /{data.handle}
+              Preview en /{data.handle}
             </Link>
           </div>
 
