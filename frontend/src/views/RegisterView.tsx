@@ -218,7 +218,7 @@ export default function RegisterView() {
           className="w-full bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 
                      text-white font-bold py-5 px-8 rounded-xl uppercase tracking-wider 
                      transition-all duration-200 hover:shadow-lg hover:shadow-cyan-400/30
-                     hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 group"
+                     hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 group cursor-pointer"
         >
           <svg
             className="w-6 h-6 group-hover:rotate-180 transition-transform"
