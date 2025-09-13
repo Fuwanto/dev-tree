@@ -1,18 +1,19 @@
-import Header from "../components/Header"
-import SearchForm from "../components/SearchForm"
+import Header from "../components/Header";
+import SearchForm from "../components/SearchForm";
+import Footer from "../components/Footer";
 
 export default function HomeView() {
-  const token = localStorage.getItem("AUTH_TOKEN")
+  const token = localStorage.getItem("AUTH_TOKEN");
 
   return (
     <>
       <main className="min-h-[calc(100vh-100px)] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Header />
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-24">
-          {/* Contenedor  */}
+          {/* Contenedor */}
           <div className="max-w-3xl mx-auto bg-gray-800/30 rounded-3xl border border-cyan-400/20 p-8 md:p-12 shadow-2xl text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Todos tus{" "}
+              Todas tus{" "}
               <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
                 Redes Sociales
               </span>{" "}
@@ -38,7 +39,8 @@ export default function HomeView() {
             )}
           </div>
         </div>
+        <Footer />
       </main>
     </>
-  )
+  );
 }
